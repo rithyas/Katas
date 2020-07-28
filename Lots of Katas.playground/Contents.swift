@@ -5,6 +5,7 @@ func factorial(number: Int) -> Int {
     guard number == 0 else {
         return number * factorial(number: number-1)
     }
+    //test
     return 1
 }
 print(factorial(number: 5))
