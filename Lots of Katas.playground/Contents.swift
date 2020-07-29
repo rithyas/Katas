@@ -169,3 +169,24 @@ func findDigit(_ num:Int, _ nth: Int) -> Int {
     return final.wholeNumberValue!
 }
 
+//July 29 2020
+func persistence(for num: Int) -> Int {
+    var count = 0
+    var number = num
+    var product = 1
+    while number > 10 {
+        count += 1
+        //Mutiply all digits of a number
+        while number != 0 {
+            product = product * (number % 10)
+            number = number / 10
+        }
+        number = product
+        product = 1
+    }
+    return count
+}
+print(persistence(for: 999))
+print(persistence(for: 39))
+print(persistence(for: 8))
+
