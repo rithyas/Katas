@@ -190,3 +190,51 @@ print(persistence(for: 999))
 print(persistence(for: 39))
 print(persistence(for: 8))
 
+// July 20 2020
+func solution(_ string:String) -> Int {
+    let letterArray = Array(string)
+    var value1 = 0
+    var value2 = 0
+    var total = 0
+    var normal = true
+    let directory = [
+        "I"    :      1,
+        "V"    :      5,
+        "X"    :      10,
+        "L"    :      50,
+        "C"    :      100,
+        "D"    :      500,
+        "M"    :      1000
+    ]
+    //Takes care of single letter array
+    if letterArray.count == 1 {
+        total = directory[String(letterArray[0])]!
+        return total
+    }
+    
+    for count in 0..<letterArray.count - 1  {
+        //Resetting
+        value1 = 0 ; value2 = 0
+        //Getting the values
+        value1 = directory[String(letterArray[count])]!
+        value2 = directory[String(letterArray[count+1])]!
+        //comparing
+        if value1 < value2 {
+            total +=  (value2-value1)
+            normal = false
+        }
+        else {
+            if normal == true {
+                 total +=  value1
+            }
+            normal = true
+        }
+    }
+    
+    if normal == true {
+        total += directory[String(letterArray[letterArray.count - 1])]!
+    }
+    return total
+}
+print(solution("CDXLIV"))
+print(solution("V"))
