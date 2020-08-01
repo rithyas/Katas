@@ -190,7 +190,7 @@ print(persistence(for: 999))
 print(persistence(for: 39))
 print(persistence(for: 8))
 
-// July 20 2020
+// July 29 2020
 func solution(_ string:String) -> Int {
     let letterArray = Array(string)
     var value1 = 0
@@ -238,3 +238,51 @@ func solution(_ string:String) -> Int {
 }
 print(solution("CDXLIV"))
 print(solution("V"))
+
+//July 30 2020
+func whatCentury(_ year: String) -> String {
+    var yearInt = Int(year)
+    var final = 1
+    for _ in 1...2 {
+        final = final * (yearInt! % 10)
+        yearInt = yearInt! / 10
+    }
+    let lastNumber = (yearInt! + 1) % 10
+    var ending = ""
+    switch lastNumber {
+    case 1:
+        ending = "st"
+    case 2:
+        ending = "nd"
+    case 3:
+        ending = "rd"
+    default:
+        ending = "th"
+    }
+    return String(yearInt! + 1 ) + ending
+}
+
+
+print(whatCentury("2000"))
+print(whatCentury("1234"))
+
+//July 31 2020
+func pyramid(_ n: Int) -> [[Int]] {
+    var pyramind = [[Int]]()
+    guard n == 0 else {
+        for i in 1...n {
+            pyramind.append([Int](repeating: 1, count: i))
+        }
+        return pyramind
+    }
+    return pyramind
+}
+print(pyramid(0))
+print(pyramid(3))
+//July 31 2020
+func encrypt(text:String, rule:Int) -> String {
+    let values =  text.map { $0.asciiValue?.advanced(by: rule)}
+    return (String(values.map{Character(UnicodeScalar($0!))}))
+}
+print (encrypt(text: "abc", rule: 1))
+print(encrypt(text: "please encrypt me", rule: 2))
