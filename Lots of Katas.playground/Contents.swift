@@ -286,3 +286,11 @@ func encrypt(text:String, rule:Int) -> String {
 }
 print (encrypt(text: "abc", rule: 1))
 print(encrypt(text: "please encrypt me", rule: 2))
+
+//August 2 2020
+func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
+       return ( nums.filter{$0 != val} ).count
+}
+
+var a = [3,2,2,3,3,2]
+print( removeElement(&a, 3) )
