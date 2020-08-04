@@ -294,3 +294,20 @@ func removeElement(_ nums: inout [Int], _ val: Int) -> Int {
 
 var a = [3,2,2,3,3,2]
 print( removeElement(&a, 3) )
+
+//August 4 2020
+
+func wave(_ y: String) -> [String] {
+    guard y.isEmpty == false else { return [String]() }
+    var final = [String]()
+    for i in 0..<y.count {
+        var word = Array(y)
+        if word[i].isWhitespace == false {
+            word[i] = Character(word[i].uppercased())
+            final.append(String(word))
+        }
+    }
+    return final
+}
+
+print(wave("  help  "))
