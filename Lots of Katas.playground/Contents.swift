@@ -311,3 +311,61 @@ func wave(_ y: String) -> [String] {
 }
 
 print(wave("  help  "))
+
+
+func rgb(_ r: Int, _ g: Int, _ b: Int) -> String {
+   // Built in --> return String(format:"%02X", r) + String(format:"%02X", g) + String(format:"%02X", b)
+    var number = 0
+    var leftover = ""
+    var remainderArray = [String]()
+    var finalArray = [String]()
+    for i in 1...3 {
+        switch i {
+        case 1:
+             number = r
+        case 2:
+             number = g
+        case 3:
+             number = b
+        default:
+            break
+        }
+        number = number < 0 ? 0 : number
+        number = number > 255 ? 255 : number
+        
+        if number == 0 {
+            remainderArray += ["0"]
+            remainderArray += ["0"]
+        }
+        while number != 0 {
+            leftover = String(number % 16)
+            switch leftover {
+            case "10":
+                leftover = "A"
+            case "11":
+                leftover = "B"
+            case "12":
+                leftover = "C"
+            case "13":
+                leftover = "D"
+            case "14":
+                leftover = "E"
+            case "15":
+                leftover = "F"
+            default:
+                _ = ""
+            }
+            remainderArray += [leftover]
+            number = number / 16
+        }
+        if remainderArray.count == 1 {
+            remainderArray.append("0")
+        }
+       finalArray += remainderArray.reversed()
+        remainderArray.removeAll()
+  
+    }
+    return finalArray.compactMap{$0}.joined()
+}
+
+print(rgb(212,53,12))
