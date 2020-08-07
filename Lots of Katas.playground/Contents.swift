@@ -369,3 +369,39 @@ func rgb(_ r: Int, _ g: Int, _ b: Int) -> String {
 }
 
 print(rgb(212,53,12))
+
+func countDuplicates(_ s:String) -> Int {
+    let input = Array(s.lowercased())
+    var dictionary = [Character: Int]()
+    var count = 0
+    input.forEach { letter in
+        dictionary[letter] = (dictionary[letter] != nil) ?  1 : 0
+    }
+    dictionary.forEach { key,val in
+        count = (val == 1) ? count+1 : count
+    }
+    return count
+}
+let mappedItems = "Sunshine!!".lowercased().map({String($0)}).map {($0, 1)}
+countDuplicates("Indivisibilities")
+countDuplicates("aabBcde")
+
+func findOutlier(_ array: [Int]) -> Int {
+    let remainderArray: Array =  array.map {abs($0%2) }
+    let odd = remainderArray.filter {$0 == 1}.count
+    let even = remainderArray.filter {$0 == 0}.count
+    let decision = odd > even ? "odd" : "even"
+    switch decision {
+    case "odd":
+        let i = array.firstIndex(where: { $0 % 2 == 0 }) ?? 0
+        return array[i]
+    case "even":
+        let i = array.firstIndex(where: { $0 % 2 == 1 || $0 % 2 == -1}) ?? 0
+        return array[i]
+    default:
+       return 0
+    }
+}
+
+print(findOutlier([3,4,7]))
+print(findOutlier([-6,4,-7,20]))
