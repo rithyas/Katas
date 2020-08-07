@@ -405,3 +405,9 @@ func findOutlier(_ array: [Int]) -> Int {
 
 print(findOutlier([3,4,7]))
 print(findOutlier([-6,4,-7,20]))
+
+func camelCase(_ str: String) -> String {
+    return str.capitalized(with: nil).replacingOccurrences(of: " ", with: "")
+}
+ 
+print(camelCase("hi ho hi"))
