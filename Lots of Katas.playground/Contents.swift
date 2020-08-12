@@ -411,3 +411,37 @@ func camelCase(_ str: String) -> String {
 }
  
 print(camelCase("hi ho hi"))
+
+//August 10 2020
+func dirReduc(_ arr: [String]) -> [String] {
+    var final: [String?] = arr
+    
+    func shorten() {
+        
+        for (index, _) in final.enumerated() {
+            
+            func remove() {
+                    final[index] = nil
+                    final[index + 1] = nil
+            }
+            
+            guard index < final.count - 1 else { break }
+            let pair: String = (final[index] ?? " ") + (final[index + 1] ?? " ")
+        
+            switch pair {
+                case "NORTHSOUTH" : remove()
+                case "SOUTHNORTH" : remove()
+                case "EASTWEST" : remove()
+                case "WESTEAST" : remove()
+            default:
+                _ = ""
+                }
+        }
+        final = final.compactMap{$0}.map{$0}
+    }
+    for _ in 1...arr.count {
+        shorten()
+    }
+    return final.compactMap{$0}
+}
+print(dirReduc(["EAST", "EAST", "WEST", "NORTH", "WEST", "EAST", "EAST", "SOUTH", "NORTH", "WEST"]) )
