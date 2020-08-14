@@ -445,3 +445,34 @@ func dirReduc(_ arr: [String]) -> [String] {
     return final.compactMap{$0}
 }
 print(dirReduc(["EAST", "EAST", "WEST", "NORTH", "WEST", "EAST", "EAST", "SOUTH", "NORTH", "WEST"]) )
+
+func sortTwisted37(_ arr: [Int]) -> [Int] {
+    let sortedArray = arr.sorted()
+    var finalArray = [Int]()
+    sortedArray.forEach{ finalArray.append($0 > 9 ? switch3or7(input: $0) : singleSwap(digit: $0) ) }
+    return finalArray
+}
+
+ func switch3or7 (input : Int) -> Int {
+    var final = [Int]()
+    var num = input
+    final.append(singleSwap(digit: num%10 ))
+      while num >= 10 {
+        num = num / 10
+        final.append(singleSwap(digit: num%10 ))
+          }
+    return Int( (Array(final.reversed())) .map(String.init).joined() )!
+}
+
+func singleSwap (digit: Int) -> Int {
+    switch digit {
+           case 3:
+               return 7
+           case 7:
+               return 3
+           default:
+               return digit
+        }
+}
+
+print(sortTwisted37([12,13,14]))
