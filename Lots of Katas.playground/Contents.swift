@@ -503,3 +503,30 @@ func duplicateEncode(_ word: String) -> String {
 }
 
 print(duplicateEncode("(( @"))
+
+func dashatize(_ number: Int) -> String {
+    let num = String(number).compactMap { Int(String($0)) }
+    var tempArray = [String] ()
+    
+    func insertDashes (digit: Int) {
+        if tempArray.last != "-" { tempArray.append("-") }
+        tempArray.append(String(digit))
+        tempArray.append("-")
+    }
+    
+    num.map {  $0 % 2 == 1 ?  insertDashes(digit: $0) : tempArray.append(String($0)) }
+    if tempArray.first == "-" { tempArray.removeFirst() }
+    if tempArray.last == "-" { tempArray.removeLast() }
+   
+    return tempArray.joined()
+}
+print(dashatize(6815))
+
+func findMissingLetter(_ chArr: [Character]) -> Character {
+    let intValues = chArr.map {$0.asciiValue}
+    var count = 0
+    while (intValues[count]! + 1) == (intValues[(count + 1)]!) { count += 1 }
+    return Character(UnicodeScalar (intValues[count]! + 1) )
+   
+}
+print(findMissingLetter(["a","b","c","d","f"]))
