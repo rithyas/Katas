@@ -476,3 +476,30 @@ func singleSwap (digit: Int) -> Int {
 }
 
 print(sortTwisted37([12,13,14]))
+
+func duplicateEncode(_ word: String) -> String {
+    var input = word.lowercased()
+    var final = ""
+    var dictionary = [Character:Int]()
+    input.forEach { (letter) in
+        if dictionary[letter] == nil {
+            dictionary[letter] = 1
+        }
+        else {
+           input = input.replacingOccurrences(of: String(letter), with: ")")
+        }
+    }
+    
+    input.forEach { (letter) in
+        if letter != ")" {
+            final += "("
+        }
+        else {
+            final += String(letter)
+        }
+    }
+    
+    return final
+}
+
+print(duplicateEncode("(( @"))
