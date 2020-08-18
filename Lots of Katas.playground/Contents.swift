@@ -530,3 +530,31 @@ func findMissingLetter(_ chArr: [Character]) -> Character {
    
 }
 print(findMissingLetter(["a","b","c","d","f"]))
+
+class Node {
+    var data: Int
+    var next: Node?
+    init(_ data: Int) {
+        self.data = data
+    }
+}
+
+func getNth(_ head: Node?, _ index: Int) throws -> Node? {
+    var count = index
+    var current = head
+    while count != 0 {
+        current = current?.next
+        count -= 1
+    }
+    return Node(current?.data ?? 0)
+}
+
+var one = Node (1)
+var two = Node (2)
+var three = Node (3)
+// 1 -> 2 -> 3 -> nil
+one.next = two
+two.next = three
+
+let i = try getNth(one, 2)
+print(i?.data)
